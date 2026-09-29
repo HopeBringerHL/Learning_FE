@@ -1,52 +1,147 @@
-# Repository Guidelines
+# Repository Agent Instructions
 
-## Project Structure & Module Organization
+This file is the entry point for AI coding agents working in this repository.
 
-This is a Vite, React 19, and TypeScript frontend. Application code lives in
-`src/`: `main.tsx` mounts the app, `App.tsx` is the root component, and
-`index.css`/`App.css` hold global and component styling. Put imported images in
-`src/assets/`; use `public/` only for files served unchanged at the site root.
-Configuration is at the repository root: `vite.config.ts`, `tsconfig*.json`,
-and `eslint.config.js`. `docs/` contains project documentation. Build output
-is generated in `dist/` and must not be committed.
+The guidance is intentionally portable: do not assume the repository name, framework, language, package manager, branch strategy, source layout, or local machine path. Discover those facts from the current repository before editing code.
 
-## Build, Test, and Development Commands
+## 1. Start every task with repository context
 
-- `npm install` installs the locked dependencies from `package-lock.json`.
-- `npm run dev` starts the Vite development server with hot reload.
-- `npm run build` type-checks with `tsc -b` and creates the production build
-  in `dist/`.
-- `npm run lint` runs ESLint across the project.
-- `npm run preview` serves the built application locally for a final check.
+Before making changes:
 
-Run `npm run lint` and `npm run build` before opening a pull request.
+1. Read [`.codex/bootstrap.md`](.codex/bootstrap.md) when the Codex setup is new, incomplete, or has just been copied into this repository.
+2. Read [`.codex/context.md`](.codex/context.md).
+3. Read [`.codex/workflow.md`](.codex/workflow.md).
+4. Read `.codex/local/handoff.md` if it exists and the task is continuing previous work.
+5. Search for relevant lessons in `.codex/local/lessons.md` and [`.codex/lessons.md`](.codex/lessons.md).
+6. Inspect the current Git status before editing. Existing local notes or prior handoff information are context only; they do not prove that the branch or remote is current.
 
-## Coding Style & Naming Conventions
+If the portable `.codex/` folder was just copied into a new repository, first bootstrap repository-specific context from the actual source and configuration. Do not implement a feature until the repository has been inspected enough to understand its real conventions.
 
-Use TypeScript and React function components. Follow the existing two-space
-indentation, single quotes, and no-semicolon style. Name components and their
-files in PascalCase (for example, `UserCard.tsx`); use camelCase for functions,
-props, and variables. Keep component-specific CSS beside its component when it
-is introduced; reserve `index.css` for global styles. Respect ESLint and
-TypeScript errors—unused locals and parameters fail the TypeScript build.
+## 2. Discover the repository instead of assuming it
 
-## Testing Guidelines
+Use the repository itself as the source of truth.
 
-No test framework or test command is configured yet. For UI changes, run lint,
-build, and verify the affected flow with `npm run dev`. Add a focused test
-alongside a component only when the project adopts a test runner; use a
-descriptive name such as `UserCard.test.tsx`.
+Inspect relevant files such as:
 
-## Commit & Pull Request Guidelines
+- `README.md`, contribution docs, and nested `AGENTS.md` files;
+- package manifests and lockfiles;
+- solution/project/module files;
+- build, lint, format, test, and type-check configuration;
+- environment examples;
+- application entry points;
+- source/module/feature directories;
+- CI/CD and deployment configuration.
 
-This checkout has no accessible Git history, so no repository-specific commit
-pattern can be inferred. Use short, imperative subjects such as `Add donation
-summary card`. Keep commits scoped to one change. Pull requests should explain
-the user-visible change, link the relevant issue when available, note checks
-run, and include screenshots for visual changes.
+Do not copy architecture facts, commands, paths, or conventions from another repository.
 
-## Configuration & Security
+When repository-specific instructions conflict with generic guidance in `.codex/` or `.agents/`, the repository-specific instructions take priority.
 
-Do not commit secrets. Put browser-safe configuration in Vite environment files
-only when needed, prefix exposed values with `VITE_`, and document required
-variables in the PR or README.
+## 3. Use project skills selectively
+
+Read [`.codex/skills-inventory.md`](.codex/skills-inventory.md) when available.
+
+For implementation work:
+
+1. Identify the task category.
+2. Inspect `.agents/skills/` for the narrowest matching skill.
+3. Read only the relevant skill's `SKILL.md` before following it.
+4. Use multiple skills only when the task genuinely spans multiple concerns.
+5. Follow existing source patterns before generic examples from a skill.
+
+Do not load every skill by default.
+
+If the host does not automatically discover project-local skills, inspect them directly under:
+
+```text
+.agents/skills/<skill-name>/SKILL.md
+```
+
+Skills are guidance, not permission. A skill must not grant itself authority to run destructive commands, modify production systems, run migrations, publish releases, commit, push, merge, or perform external side effects unless the user request and repository workflow clearly require them.
+
+## 4. Inspect before editing
+
+Before adding or changing code:
+
+- locate the closest existing implementation;
+- read the files you intend to edit;
+- follow existing folder placement and naming;
+- reuse established abstractions and utilities;
+- preserve current API, state, routing, validation, styling, and error-handling conventions where applicable;
+- avoid introducing a second pattern for something the repository already solves.
+
+If no precedent exists, choose the smallest architecture that fits the current stack rather than importing assumptions from another project.
+
+## 5. Protect existing work
+
+- Preserve unrelated user changes.
+- Do not reset, clean, stash, checkout, rebase, force-push, delete, or overwrite work unless explicitly required and safe.
+- Do not edit generated files unless the repository expects generated files to be edited directly.
+- Do not expose or store secrets, access tokens, credentials, private keys, production data, or personal data in source, shared notes, or local Codex notes.
+- Do not weaken security or validation merely to make development or tests pass.
+
+## 6. Verify with commands that actually exist
+
+Read the repository configuration before selecting verification commands.
+
+Prefer the smallest meaningful checks first, then widen based on risk:
+
+1. focused/static checks;
+2. lint;
+3. type-check;
+4. focused tests;
+5. broader tests;
+6. production build when relevant.
+
+Do not assume commands such as `npm test`, `pnpm lint`, `dotnet test`, or similar exist.
+
+Report exactly what was run and what passed or failed. A successful build is not proof that business behavior is correct.
+
+Documentation-only changes generally require path/link/content validation rather than unrelated full application test suites.
+
+## 7. Git and delivery
+
+Follow the repository's documented Git, branch, PR, and release workflow when one exists.
+
+If the repository does not define one:
+
+- do not invent a mandatory branch strategy;
+- do not commit, push, open a PR, merge, or release unless requested;
+- inspect the final diff before handoff;
+- keep requested commits focused and use clear messages;
+- never commit `.codex/local/` notes.
+
+## 8. Local handoff and lessons
+
+Use `.codex/local/` only when it is ignored by Git, as defined by [`.codex/bootstrap.md`](.codex/bootstrap.md).
+
+For substantial or unfinished work, keep `.codex/local/handoff.md` concise:
+
+- current goal;
+- important decisions;
+- branch/HEAD observed when relevant;
+- files changed;
+- completed work;
+- remaining work;
+- verification performed;
+- blockers or risks;
+- next logical step.
+
+Record machine/session-specific lessons in `.codex/local/lessons.md`.
+
+Promote only verified, broadly useful lessons to [`.codex/lessons.md`](.codex/lessons.md). Do not turn shared lessons into a debugging transcript.
+
+## 9. Portable copy behavior
+
+This file, `.codex/`, and `.agents/` are designed to be copied together into another repository.
+
+After copying them:
+
+1. open the new repository root;
+2. read this `AGENTS.md`;
+3. read `.codex/bootstrap.md`;
+4. inspect the new repository;
+5. update repository-specific context and skill inventory from verified facts;
+6. keep the portable workflow generic;
+7. only then start implementation work.
+
+Never retain project-specific facts from the previous repository unless they are independently verified in the new repository.
