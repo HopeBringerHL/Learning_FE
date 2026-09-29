@@ -8,21 +8,21 @@ export function HeroSection({ data }: HeroSectionProps) {
   if (!data) return null
 
   return (
-    <section className="relative min-h-[620px] overflow-hidden bg-[#291f1e] text-white">
+    <section id="home" className="relative min-h-[620px] overflow-hidden bg-[#291f1e] text-white">
       <img
         src={data.imageUrl}
         alt={data.title}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="hero-image-enter absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-black/20" />
 
       <div className="relative mx-auto flex min-h-[620px] max-w-[1200px] items-end px-6 pb-12 pt-32 lg:px-0 lg:pb-14">
         <div className="grid w-full gap-8 md:grid-cols-[1.25fr_0.75fr] md:items-end md:gap-14">
-          <h1 className="max-w-[720px] font-['Playfair_Display'] text-5xl font-bold leading-[1.02] md:text-6xl lg:text-[74px]">
+          <h1 className="hero-title-enter max-w-[720px] font-['Playfair_Display'] text-5xl font-bold leading-[1.02] md:text-6xl lg:text-[74px]">
             {data.title}
           </h1>
 
-          <div className="md:pb-1">
+          <div className="hero-copy-enter md:pb-1">
             <p className="max-w-[390px] font-['Outfit'] text-base leading-6 text-white/90 md:text-lg md:leading-7">
               {data.description}
             </p>

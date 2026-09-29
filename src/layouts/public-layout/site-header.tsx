@@ -1,9 +1,9 @@
 export function SiteHeader() {
   return (
-    <header className="absolute inset-x-0 top-5 z-30 px-5 lg:px-0">
+    <header className="site-header-enter absolute inset-x-0 top-5 z-30 px-5 lg:px-0">
       <div className="mx-auto flex min-h-[60px] w-full max-w-[1296px] items-center justify-between bg-[#fffdf4] px-5 text-[#291f1e] shadow-sm lg:w-[90%] lg:px-8">
         <a
-          href="/"
+          href="#home"
           className="font-['Playfair_Display'] text-lg font-bold leading-[0.9] tracking-wide md:text-xl"
         >
           HOPE
@@ -12,7 +12,7 @@ export function SiteHeader() {
         </a>
 
         <nav className="hidden items-center gap-7 font-['Outfit'] text-sm md:flex lg:gap-9">
-          <a href="/" className="transition hover:opacity-60">
+          <a href="#home" className="transition hover:opacity-60">
             Home
           </a>
           <a href="#about" className="transition hover:opacity-60">
@@ -21,13 +21,13 @@ export function SiteHeader() {
           <a href="#services" className="transition hover:opacity-60">
             Services
           </a>
-          <a href="#gallery" className="transition hover:opacity-60">
+          <a href="#projects" className="transition hover:opacity-60">
             Projects
           </a>
           <a href="#team" className="transition hover:opacity-60">
             Team
           </a>
-          <a href="#career" className="transition hover:opacity-60">
+          <a href="#contact" className="transition hover:opacity-60">
             Career
           </a>
         </nav>

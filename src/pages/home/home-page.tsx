@@ -3,6 +3,7 @@ import { FeaturedProjectsSection } from '@/features/home/components/featured-pro
 import { GallerySection } from '@/features/home/components/gallery-section/gallery-section'
 import { HeroSection } from '@/features/home/components/hero-section/hero-section'
 import { MaterialsSection } from '@/features/home/components/materials-section/materials-section'
+import { ServiceBenefitsShowcaseSection } from '@/features/home/components/service-benefits-showcase-section/service-benefits-showcase-section'
 import { ServicesSection } from '@/features/home/components/services-section/services-section'
 import { useHomeContents } from '@/features/home/hooks/use-home-contents'
 
@@ -25,6 +26,7 @@ export function HomePage() {
       <BenefitsSection items={benefits} />
       <FeaturedProjectsSection items={gallery} />
       <MaterialsSection />
+      <ServiceBenefitsShowcaseSection />
       <GallerySection items={gallery} />
     </main>
   )
