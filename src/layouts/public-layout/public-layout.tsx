@@ -1,5 +1,14 @@
 import { Outlet } from 'react-router-dom'
 
+import { SiteFooter } from './site-footer'
+import { SiteHeader } from './site-header'
+
 export function PublicLayout() {
-  return <Outlet />
+  return (
+    <>
+      <SiteHeader />
+      <Outlet />
+      <SiteFooter />
+    </>
+  )
 }
