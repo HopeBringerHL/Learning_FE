@@ -13,16 +13,16 @@ export function FeaturedProjectsSection({ items }: FeaturedProjectsSectionProps)
       <div className="mx-auto max-w-[1060px]">
         <div className="grid gap-5 md:grid-cols-3">
           {projects.map((item, index) => (
-            <Reveal key={item.id} direction="scale" delay={index * 130}>
-              <article className="group hover-lift-deep relative h-[430px] overflow-hidden bg-[#eee7dc]">
+            <Reveal key={item.id} direction="scale" delay={index * 130} className="min-w-0">
+              <article className="group hover-lift-deep relative h-[430px] w-full overflow-hidden bg-[#eee7dc]">
                 <img
                   src={item.imageUrl}
                   alt={item.title}
-                  className="h-full w-full object-cover transition duration-1000 ease-out group-hover:scale-[1.06]"
+                  className="absolute inset-0 block h-full w-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-[1.06]"
                 />
 
-                <div className="absolute bottom-4 left-4 right-4 flex items-end transition-transform duration-700 ease-out group-hover:-translate-y-2">
-                  <div className="min-w-0 flex-1 bg-[#fffdf4] px-4 py-3 shadow-[0_10px_30px_rgba(41,31,30,0.1)]">
+                <div className="absolute bottom-4 left-4 right-4 z-10 grid min-h-[76px] max-w-full grid-cols-[minmax(0,1fr)_36px] overflow-hidden bg-[#fffdf4] shadow-[0_10px_30px_rgba(41,31,30,0.1)] transition-transform duration-700 ease-out md:group-hover:-translate-y-2">
+                  <div className="min-w-0 px-4 py-3">
                     <h3 className="font-['Playfair_Display'] text-base font-bold leading-tight text-[#291f1e]">
                       {item.title}
                     </h3>
@@ -35,7 +35,7 @@ export function FeaturedProjectsSection({ items }: FeaturedProjectsSectionProps)
                   <a
                     href="#gallery"
                     aria-label={`View ${item.title}`}
-                    className="flex size-9 shrink-0 items-center justify-center bg-[#8fa969] text-sm text-[#291f1e] transition hover:-translate-y-0.5 hover:translate-x-0.5 hover:bg-[#7d965a] hover:text-[#291f1e]"
+                    className="flex h-full items-center justify-center bg-[#8fa969] text-sm text-[#291f1e] transition-colors hover:bg-[#7d965a] hover:text-[#291f1e]"
                   >
                     ↗
                   </a>
